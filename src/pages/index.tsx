@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
+import Swal from "sweetalert2";
 
-// import { DataType } from "../utils/type";
 import { WrappingCard } from "../components/Card";
 
 const index = () => {
@@ -68,65 +68,126 @@ const index = () => {
     }
   }
   
-//   cek output pada console atapun pada localstorage
+  //   cek output pada console ataupun pada localstorage
   console.log(data);
 
   function submitAsPen(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const aspekPenilaian =
-      JSON.parse(localStorage.getItem("AspekPenilaian") || "[]") || [];
-    const penilaian = {
-      aspek_penilaian_1: {
-        mahasiswa_1: parseInt(ms11),
-        mahasiswa_2: parseInt(ms21),
-        mahasiswa_3: parseInt(ms31),
-        mahasiswa_4: parseInt(ms41),
-        mahasiswa_5: parseInt(ms51),
-        mahasiswa_6: parseInt(ms61),
-        mahasiswa_7: parseInt(ms71),
-        mahasiswa_8: parseInt(ms81),
-        mahasiswa_9: parseInt(ms91),
-        mahasiswa_10: parseInt(ms101),
-      },
-      aspek_penilaian_2: {
-        mahasiswa_1: parseInt(ms12),
-        mahasiswa_2: parseInt(ms22),
-        mahasiswa_3: parseInt(ms32),
-        mahasiswa_4: parseInt(ms42),
-        mahasiswa_5: parseInt(ms52),
-        mahasiswa_6: parseInt(ms62),
-        mahasiswa_7: parseInt(ms72),
-        mahasiswa_8: parseInt(ms82),
-        mahasiswa_9: parseInt(ms92),
-        mahasiswa_10: parseInt(ms102),
-      },
-      aspek_penilaian_3: {
-        mahasiswa_1: parseInt(ms13),
-        mahasiswa_2: parseInt(ms23),
-        mahasiswa_3: parseInt(ms33),
-        mahasiswa_4: parseInt(ms43),
-        mahasiswa_5: parseInt(ms53),
-        mahasiswa_6: parseInt(ms63),
-        mahasiswa_7: parseInt(ms73),
-        mahasiswa_8: parseInt(ms83),
-        mahasiswa_9: parseInt(ms93),
-        mahasiswa_10: parseInt(ms103),
-      },
-      aspek_penilaian_4: {
-        mahasiswa_1: parseInt(ms14),
-        mahasiswa_2: parseInt(ms24),
-        mahasiswa_3: parseInt(ms34),
-        mahasiswa_4: parseInt(ms44),
-        mahasiswa_5: parseInt(ms54),
-        mahasiswa_6: parseInt(ms64),
-        mahasiswa_7: parseInt(ms74),
-        mahasiswa_8: parseInt(ms84),
-        mahasiswa_9: parseInt(ms94),
-        mahasiswa_10: parseInt(ms104),
-      },
-    };
-    aspekPenilaian.push(penilaian);
-    localStorage.setItem("AspekPenilaian", JSON.stringify(aspekPenilaian));
+    if (
+      ms11 &&
+      ms12 &&
+      ms13 &&
+      ms14 &&
+      ms21 &&
+      ms22 &&
+      ms23 &&
+      ms24 &&
+      ms31 &&
+      ms32 &&
+      ms33 &&
+      ms34 &&
+      ms41 &&
+      ms42 &&
+      ms43 &&
+      ms44 &&
+      ms51 &&
+      ms52 &&
+      ms53 &&
+      ms54 &&
+      ms61 &&
+      ms62 &&
+      ms63 &&
+      ms64 &&
+      ms71 &&
+      ms72 &&
+      ms73 &&
+      ms74 &&
+      ms81 &&
+      ms82 &&
+      ms83 &&
+      ms84 &&
+      ms91 &&
+      ms92 &&
+      ms93 &&
+      ms94 &&
+      ms101 &&
+      ms102 &&
+      ms103 &&
+      ms104 !== ""
+    ) {
+      const aspekPenilaian =
+        JSON.parse(localStorage.getItem("AspekPenilaian") || "[]") || [];
+      const penilaian = {
+        aspek_penilaian_1: {
+          mahasiswa_1: parseInt(ms11),
+          mahasiswa_2: parseInt(ms21),
+          mahasiswa_3: parseInt(ms31),
+          mahasiswa_4: parseInt(ms41),
+          mahasiswa_5: parseInt(ms51),
+          mahasiswa_6: parseInt(ms61),
+          mahasiswa_7: parseInt(ms71),
+          mahasiswa_8: parseInt(ms81),
+          mahasiswa_9: parseInt(ms91),
+          mahasiswa_10: parseInt(ms101),
+        },
+        aspek_penilaian_2: {
+          mahasiswa_1: parseInt(ms12),
+          mahasiswa_2: parseInt(ms22),
+          mahasiswa_3: parseInt(ms32),
+          mahasiswa_4: parseInt(ms42),
+          mahasiswa_5: parseInt(ms52),
+          mahasiswa_6: parseInt(ms62),
+          mahasiswa_7: parseInt(ms72),
+          mahasiswa_8: parseInt(ms82),
+          mahasiswa_9: parseInt(ms92),
+          mahasiswa_10: parseInt(ms102),
+        },
+        aspek_penilaian_3: {
+          mahasiswa_1: parseInt(ms13),
+          mahasiswa_2: parseInt(ms23),
+          mahasiswa_3: parseInt(ms33),
+          mahasiswa_4: parseInt(ms43),
+          mahasiswa_5: parseInt(ms53),
+          mahasiswa_6: parseInt(ms63),
+          mahasiswa_7: parseInt(ms73),
+          mahasiswa_8: parseInt(ms83),
+          mahasiswa_9: parseInt(ms93),
+          mahasiswa_10: parseInt(ms103),
+        },
+        aspek_penilaian_4: {
+          mahasiswa_1: parseInt(ms14),
+          mahasiswa_2: parseInt(ms24),
+          mahasiswa_3: parseInt(ms34),
+          mahasiswa_4: parseInt(ms44),
+          mahasiswa_5: parseInt(ms54),
+          mahasiswa_6: parseInt(ms64),
+          mahasiswa_7: parseInt(ms74),
+          mahasiswa_8: parseInt(ms84),
+          mahasiswa_9: parseInt(ms94),
+          mahasiswa_10: parseInt(ms104),
+        },
+      };
+      aspekPenilaian.push(penilaian);
+      localStorage.setItem("AspekPenilaian", JSON.stringify(aspekPenilaian));
+
+      //sweetalert sukses
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        text: "Simpan success, silahkan cek console / cek localstorage anda",
+        showConfirmButton: false,
+        timer: 5000,
+      });
+    } else {
+      //sweetalert error
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        text: "Isi aspek nilai terlebih dahulu sebelum simpan",
+        showConfirmButton: false,
+        timer: 5000,
+      });
+    }
   }
 
   return (
